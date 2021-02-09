@@ -5,9 +5,9 @@ import Message from '../../atoms/Message/Message'
 export default function MessageGrid({ messages }) { //messages is an array of message objects
   return (
     <div className={styles.gridContainer}>
-      {messages.map(message => (
-        <div className={styles.messageContainer}>
-          <Message key={message.authorId} author={message.authorId} name={message.authorName} messageContent={message.message} /> {/* Eventually, authorName will be changed to getting the data via id */}
+      {JSON.parse(messages).map(message => (
+        <div key={message.uid} className={styles.messageContainer}>
+          <Message uid={message.uid} text={message.text} edited={message.edited} /> {/* Eventually, authorName will be changed to getting the data via id */}
         </div>
       ))}
     </div>

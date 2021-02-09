@@ -4,12 +4,21 @@
   background: darkgrey;
   border: 2px solid black;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.message {
-  align-self: center;
+.title {
+  margin: 0;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.titleContainer {
+  display: flex;
 }

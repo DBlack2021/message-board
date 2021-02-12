@@ -1,8 +1,7 @@
 import styles from '../styles/Home.module.css'
 import { db } from '../utils/db/index'
 import MessageGrid from '../components/molecules/MessageGrid/MessageGrid'
-import ProfileDropDown from '../components/molecules/ProfileDropDown/ProfileDropDown';
-import SubmitMessage from '../components/atoms/SubmitMessage/SubmitMessage';
+import Head from 'next/head'
 import NavBar from '../components/molecules/NavBar/NavBar';
 
 export async function getServerSideProps(context) {
@@ -21,6 +20,9 @@ export async function getServerSideProps(context) {
 export default function Home({ data: messages }) {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Message Board</title>
+      </Head>
       <NavBar />
       <MessageGrid messages={messages} />
     </div>

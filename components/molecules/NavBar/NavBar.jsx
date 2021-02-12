@@ -7,7 +7,9 @@ export default function NavBar() {
   return (
     <div className={styles.container}>
       <Link href="/">
-        <h1>Message Board</h1>
+        <a>
+          <h1>Message Board</h1>
+        </a>
       </Link>
       <ProfileDropDown />
     </div>

@@ -1,6 +1,5 @@
 .container {
-  width: 100%;
-  text-overflow: ellipsis;
+  max-width: 100%;
   background: darkgrey;
   border: 2px solid black;
   border-radius: 5px;
@@ -21,4 +20,9 @@
 
 .titleContainer {
   display: flex;
+}
+
+.message {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }

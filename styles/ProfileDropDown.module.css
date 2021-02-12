@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.child {
+  cursor: pointer;
+}

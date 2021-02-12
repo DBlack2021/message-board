@@ -1,10 +1,15 @@
 .gridContainer {
   display: grid;
   padding: 15px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
   gap: 25px;
 }
 
 .messageContainer {
   width: 100%;
+}
+
+.submitBox {
+  display: flex;
+  flex-direction: column;
 }

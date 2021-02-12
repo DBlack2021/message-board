@@ -1,12 +1,16 @@
 import MessageGrid from '../components/molecules/MessageGrid/MessageGrid';
-import db from '../utils/db/index'
+import NavBar from '../components/molecules/NavBar/NavBar';
+import { db, auth } from '../utils/db/index'
 
 export async function getStaticPaths() {
+  let ids;
 
-  const users = await db.collection('users').get();
-  const ids = users.docs.map(entry => ({params: {
-    id: entry.id
-  }}));
+  //Not functional for now (in fact it crashes), TODO: Fix this
+  auth.listUsers().then((userRecords) => {
+    ids = userRecords.map(entry => ({params: {
+      id: entry.id
+    }}))
+  }).catch((error) => console.log(error));
 
   return {
     paths: ids,
@@ -15,11 +19,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  let user;
-
-  await db.collection('users').doc(params.id).get().then(snapshot => {
-    user = snapshot.data()
-  });
   
   const entries = await db.collection('messages').where("uid", "==", params.id).orderBy('createdAt').get();
   const messages = entries.docs.map(entry => ({
@@ -28,16 +27,16 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      user: user,
       messages: JSON.stringify(messages)
     },
   } 
 }
 
-export default function profilePage({ user, messages }) {
+export default function profilePage({ messages }) {
   return (
     <div>
-      <h1>{user.name}</h1>
+      <NavBar />
+      <h1>{messages[0].name}</h1> {/* We can use messages[0] because all of the messages will have the same 'name' attribute */}
       <MessageGrid messages={messages} />
     </div>
   )

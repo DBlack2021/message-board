@@ -12,16 +12,20 @@ export default function SubmitMessage() {
 
   const  submitMessage = async () => {
     if(user) {
-      //submit the message and write to the DB
-      const data = {
-        authorName: user.displayName,
-        createdAt: new Date(),
-        edited: false,
-        text: message,
-        uid: user.uid,
+      if(message.length == 0) {
+        alert("Please submit a message!")
+      } else {
+        //submit the message and write to the DB
+        const data = {
+          authorName: user.displayName,
+          createdAt: new Date(),
+          edited: false,
+          text: message,
+          uid: user.uid,
+        }
+        const res = await db.collection('messages').doc().set(data);
+        window.location.reload(false);
       }
-      const res = await db.collection('messages').doc().set(data);
-      window.location.reload(false);
     } else {
       //prompt them to log in and then submit message again
       const provider = new firebase.auth.GoogleAuthProvider();

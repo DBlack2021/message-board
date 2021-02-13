@@ -4,15 +4,16 @@ import MessageGrid from '../components/molecules/MessageGrid/MessageGrid'
 import Head from 'next/head'
 import NavBar from '../components/molecules/NavBar/NavBar';
 
-export async function getServerSideProps(context) {
-  const entries = await db.collection('messages').orderBy('createdAt').get();
+
+export async function getServerSideProps() {
+  const entries = await db.collection('messages').orderBy('createdAt', 'asc').limit(50).get();
   const data = entries.docs.map(entry => ({
     ...entry.data()
-  }));
+  })).reverse();
 
   return {
     props: {
-      data: JSON.stringify(data)
+      data: JSON.stringify(data),
     },
   }
 }

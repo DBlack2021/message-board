@@ -4,12 +4,13 @@ import 'firebase/auth';
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: "AIzaSyDwhtbghBxMO04iew-j8LcQ6oY9d-ydr_E",
-    authDomain: "message-board-1cd62.firebaseapp.com",
-    projectId: "message-board-1cd62",
-    storageBucket: "message-board-1cd62.appspot.com",
-    messagingSenderId: "177882724356",
-    appId: "1:177882724356:web:691733c4272f7d908e1d51"
+    apiKey: "AIzaSyDnYWlY-viNBWjQkQLR9mZISkl_yEM17rk",
+    authDomain: "message-board-3b38a.firebaseapp.com",
+    projectId: "message-board-3b38a",
+    storageBucket: "message-board-3b38a.appspot.com",
+    messagingSenderId: "248319017404",
+    appId: "1:248319017404:web:4c81fa6ce11dccff6fabb9",
+    measurementId: "G-TG7C86E047"
   });
 }else {
   firebase.app(); // if already initialized, use that one

@@ -6,10 +6,10 @@ import NavBar from '../components/molecules/NavBar/NavBar';
 
 
 export async function getServerSideProps() {
-  const entries = await db.collection('messages').orderBy('createdAt', 'asc').limit(50).get();
+  const entries = await db.collection('messages').orderBy('createdAt', 'desc').limit(50).get();
   const data = entries.docs.map(entry => ({
     ...entry.data()
-  })).reverse();
+  }));
 
   return {
     props: {

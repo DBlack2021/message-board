@@ -12,7 +12,7 @@ export default function SubmitMessage() {
 
   const  submitMessage = async () => {
     if(user) {
-      if(message.length == 0) {
+      if(message.length == 0 || !str.replace(/\s/g, '').length) {
         alert("Please submit a message!")
       } else {
         //submit the message and write to the DB

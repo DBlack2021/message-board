@@ -10,6 +10,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@storybook/addon-knobs": "^6.1.17",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",

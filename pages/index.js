@@ -6,8 +6,9 @@ import NavBar from '../components/molecules/NavBar/NavBar';
 
 
 export async function getServerSideProps() {
-  const entries = await db.collection('messages').orderBy('createdAt', 'desc').limit(50).get();
+  const entries = await db.collection('messages').orderBy('createdAt', 'desc').limit(51).get(); //50 messages and then the 1 because there's an empty space :)
   const data = entries.docs.map(entry => ({
+    id: entry.id,
     ...entry.data()
   }));
 

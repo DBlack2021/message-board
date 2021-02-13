@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   max-width: 100%;
   height: 100%;
   background: darkgrey;
@@ -27,4 +28,10 @@
   max-width: 100%;
   overflow-wrap: break-word;
   text-align: center;
+}
+
+.edit {
+  position: absolute;
+  right: 15px;
+  top: 10px;
 }

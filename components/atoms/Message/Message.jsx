@@ -9,7 +9,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName }) {
 
   const [user] = useAuthState(auth);
-  console.log(user);
+
   return (
     <div className={styles.container}>
       

@@ -1,22 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from '../../../styles/Message.module.css'
 import { db, auth } from '../../../utils/db/index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { Modal } from '@material-ui/core'
+import EditMessage from '../EditMessage/EditMessage'
 
 export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName }) {
 
   const [user] = useAuthState(auth);
+  const [editing, setEditing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   return (
     <div className={styles.container}>
       
       { user && user.uid == authorId &&
+        <>
           <div className={styles.edit}>
-            <FontAwesomeIcon icon={faPencilAlt} />
+            <FontAwesomeIcon onClick={() => setEditing(true)} icon={faPencilAlt} />
           </div>
+
+          <div className={styles.trash}>
+            <FontAwesomeIcon onClick={() => setDeleting(true)} icon={faTrashAlt} />
+          </div>
+        </>
       }
 
       <div className={styles.titleContainer}>
@@ -29,9 +39,15 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       </div>
       
       <p className={styles.message}>{message}</p>
-      {edited &&
-        <p>(edited)</p>
-      }
+
+      <Modal onClose={() => setEditing(false)} className={styles.modal} open={editing}>
+        <EditMessage id={messageId} />
+      </Modal>
+
+      <Modal onClose={() => setDeleting(false)} className={styles.modal} open={deleting}>
+        <EditMessage id={messageId} />
+      </Modal>
+
     </div>
   )
 }

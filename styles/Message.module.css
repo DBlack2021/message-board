@@ -34,4 +34,23 @@
   position: absolute;
   right: 15px;
   top: 10px;
+  cursor: pointer;
+}
+
+.trash {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.modal {
+  width: 33%;
+  height: 200px;
+  background: white;
+  color: black;
+  padding: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: auto
 }

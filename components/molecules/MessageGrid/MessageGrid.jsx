@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../../styles/MessageGrid.module.css'
 import messageStyles from '../../../styles/Message.module.css'
 import Message from '../../atoms/Message/Message'
-import SubmitMessage from '../../atoms/SubmitMessage/SubmitMessage'
+import SubmitMessage from '../SubmitMessage/SubmitMessage'
 import { useRouter } from 'next/router'
 
 export default function MessageGrid({ messages }) { 
@@ -15,8 +15,8 @@ export default function MessageGrid({ messages }) {
         </div>
       }
       {JSON.parse(messages).map(message => (
-        <div key={message.uid} className={styles.messageContainer}>
-          <Message uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
+        <div key={message.id} className={styles.messageContainer}>
+          <Message id={message.id} uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
         </div>
       ))}
     </div>

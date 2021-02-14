@@ -10,9 +10,9 @@ export default function SubmitMessage() {
   const [message, setMessage] = useState("");
   const [user] = useAuthState(auth);
 
-  const  submitMessage = async () => {
+  const submitMessage = async () => {
     if(user) {
-      if(message.length == 0 || !message.replace(/\s/g, '').length) {
+      if(message.length == 0 || !message.replace(/\s/g, '').length || !message.replace(/ ឵឵/g, '').length) {
         alert("Please submit a message!")
       } else {
         //submit the message and write to the DB

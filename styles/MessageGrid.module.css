@@ -6,6 +6,18 @@
   gap: 25px;
 }
 
+@media only screen and (max-width: 600px) {
+  .gridContainer {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+  .gridContainer {
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  }
+}
+
 .messageContainer {
   width: 100%;
 }

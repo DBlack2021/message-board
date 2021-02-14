@@ -20,10 +20,10 @@ export default function DeleteMessage({ id, close }) {
   return (
     <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', gap: '10px', maxHeight: '100%' }}>
       <h3 className={styles.title}>Are you sure you'd like to delete this message?</h3>
-      <h4>"{message}"</h4>
-      <div style={{ display: 'flex' }}>
-        <button onClick={deleteMessage}>Yes</button>
-        <button onClick={close}>No</button>
+      <h4 style={{ textAlign: 'center' }}>"{message}"</h4>
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={deleteMessage} style={{ width: '50px', height: '30px', backgroundColor: 'green', fontSize: '16px', border: 'none', cursor: 'pointer' }}>Yes</button>
+        <button onClick={close} style={{ width: '50px', height: '30px', backgroundColor: 'red', fontSize: '16px', border: 'none', cursor: 'pointer' }}>No</button>
       </div>
     </div>
   )

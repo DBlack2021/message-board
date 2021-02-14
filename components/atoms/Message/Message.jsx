@@ -19,17 +19,17 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
     <div className={styles.container}>
       
       { user && user.uid == authorId &&
-        <>
           <div className={styles.edit}>
             <FontAwesomeIcon onClick={() => setEditing(true)} icon={faPencilAlt} />
           </div>
-
+      }
+      
+      { user && user.uid == authorId &&
           <div className={styles.trash}>
             <FontAwesomeIcon onClick={() => setDeleting(true)} icon={faTrashAlt} />
           </div>
-        </>
       }
-
+      
       <div className={styles.titleContainer}>
         <Link href={`/${authorId}`}>
           <a>

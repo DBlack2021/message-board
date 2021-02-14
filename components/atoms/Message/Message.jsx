@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from '../../../styles/Message.module.css'
-import { db, auth } from '../../../utils/db/index'
+import { auth } from '../../../utils/db/index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { Modal } from '@material-ui/core'
-import EditMessage from '../EditMessage/EditMessage'
+import EditMessage from '../../molecules/EditMessage/EditMessage'
+import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
 
 export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName }) {
 
@@ -45,7 +46,7 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       </Modal>
 
       <Modal onClose={() => setDeleting(false)} className={styles.modal} open={deleting}>
-        <EditMessage id={messageId} />
+        <DeleteMessage id={messageId} close={() => setDeleting(false)}/>
       </Modal>
 
     </div>

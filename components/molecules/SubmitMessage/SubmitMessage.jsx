@@ -22,6 +22,7 @@ export default function SubmitMessage() {
           edited: false,
           text: message,
           uid: user.uid,
+          photoURL: user.photoURL,
         }
         const res = await db.collection('messages').doc().set(data);
         window.location.reload(false);

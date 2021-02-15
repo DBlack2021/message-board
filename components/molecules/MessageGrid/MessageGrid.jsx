@@ -16,7 +16,7 @@ export default function MessageGrid({ messages }) {
       }
       {JSON.parse(messages).map(message => (
         <div key={message.id} className={styles.messageContainer}>
-          <Message id={message.id} uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
+          <Message photoURL={message.photoURL} id={message.id} uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
         </div>
       ))}
     </div>

@@ -15,6 +15,12 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
+  const titleCase = (str) => {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
+  }
+
   return (
     <div className={styles.container}>
       
@@ -33,7 +39,7 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       <div className={styles.titleContainer}>
         <Link href={`/${authorId}`}>
           <a>
-            <h3 className={styles.title}>{authorName}</h3>
+            <h3 className={styles.title}>{titleCase(authorName)}</h3>
           </a>
         </Link>
         <h3 style={{ margin: '0 0 0 0.25em' }}>says...</h3>

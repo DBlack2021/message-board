@@ -9,6 +9,7 @@ export async function getServerSideProps(context) {
   const entries = await db.collection('messages').where("uid", "==", userId).orderBy('createdAt', 'desc').get();
 
   const messages = entries.docs.map(entry => ({
+    id: entry.id,
     ...entry.data()
   }));
 

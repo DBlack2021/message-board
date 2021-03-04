@@ -5,7 +5,7 @@ import Message from '../../atoms/Message/Message'
 import SubmitMessage from '../SubmitMessage/SubmitMessage'
 import { useRouter } from 'next/router'
 
-export default function MessageGrid({ messages }) { 
+export default function MessageGrid({ messages }) {
   const router = useRouter();
   return (
     <div className={styles.gridContainer}>

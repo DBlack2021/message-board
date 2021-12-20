@@ -34,3 +34,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+/utils
+/utils/index.js

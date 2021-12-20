@@ -16,6 +16,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function messagePage( { id, message } ) {
+
+  const parsedMessage = JSON.parse(message);
+
   return (
     <div>
       <Head>
@@ -25,12 +28,12 @@ export default function messagePage( { id, message } ) {
       {
         message ? // todo : fix because {} is still truthy
         <Message 
-          photoURL={JSON.parse(message).photoURL} 
+          photoURL={parsedMessage.photoURL} 
           id={id} 
-          uid={JSON.parse(message).uid} 
-          text={JSON.parse(message).text} 
-          edited={JSON.parse(message).edited} 
-          authorName={JSON.parse(message).authorName} />
+          uid={parsedMessage.uid} 
+          text={parsedMessage.text} 
+          edited={parsedMessage.edited} 
+          authorName={parsedMessage.authorName} />
         :
         <h1 style={{ textAlign: 'center' }}>The Requested Message Cannot Be Found!</h1>
       }

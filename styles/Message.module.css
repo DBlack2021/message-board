@@ -44,6 +44,20 @@
   cursor: pointer;
 }
 
+.commentloggedin {
+  position: absolute;
+  right: 65px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.commentnotloggedin {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
 .modal {
   width: 33%;
   height: 200px;

@@ -4,13 +4,12 @@ import styles from '../../../styles/Message.module.css'
 import { auth } from '../../../utils/db/index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faTrashAlt, faComment } from '@fortawesome/free-solid-svg-icons'
 import { Modal } from '@material-ui/core'
 import EditMessage from '../../molecules/EditMessage/EditMessage'
 import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
 
 export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName }) {
-
   const [user] = useAuthState(auth);
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -35,6 +34,21 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
             <FontAwesomeIcon onClick={() => setDeleting(true)} icon={faTrashAlt} />
           </div>
       }
+
+      { user && user.uid == authorId ?
+        <div className={styles.commentloggedin}>
+          <Link href={`/message/${messageId}`}>
+            <FontAwesomeIcon icon={faComment} />
+          </Link>
+        </div>
+        :
+        <div className={styles.commentnotloggedin}>
+          <Link href={`/message/${messageId}`}>
+            <FontAwesomeIcon icon={faComment} />
+          </Link>
+        </div>
+      }
+      
       
       <div className={styles.titleContainer}>
         <Link href={`/${authorId}`}>

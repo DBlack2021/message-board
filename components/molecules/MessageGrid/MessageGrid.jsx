@@ -5,7 +5,7 @@ import Message from '../../atoms/Message/Message'
 import SubmitMessage from '../SubmitMessage/SubmitMessage'
 import { useRouter } from 'next/router'
 
-export default function MessageGrid({ messages }) { 
+export default function MessageGrid({ messages }) {
   const router = useRouter();
   return (
     <div className={styles.gridContainer}>
@@ -16,7 +16,7 @@ export default function MessageGrid({ messages }) {
       }
       {JSON.parse(messages).map(message => (
         <div key={message.id} className={styles.messageContainer}>
-          <Message id={message.id} uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
+          <Message photoURL={message.photoURL} id={message.id} uid={message.uid} text={message.text} edited={message.edited} authorName={message.authorName} />
         </div>
       ))}
     </div>

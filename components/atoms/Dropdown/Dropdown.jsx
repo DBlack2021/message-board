@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../../../styles/ProfileDropDown.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons'
 
 export default function Dropdown({ children }) {
 
@@ -9,8 +11,8 @@ export default function Dropdown({ children }) {
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {children[0]}
-        <button style={{ height: '30px', cursor: 'pointer' }} onClick={() => setOpenMenu(!openMenu)}>
-          {openMenu ? '˄' : '˅'}
+        <button style={{ height: '30px', cursor: 'pointer', background: 'transparent', border: 'none' }} onClick={() => setOpenMenu(!openMenu)}>
+          {openMenu ? <FontAwesomeIcon icon={faSortUp} /> : <FontAwesomeIcon icon={faSortDown} />}
         </button>
       </div>
       

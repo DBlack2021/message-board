@@ -9,7 +9,7 @@ import { Modal } from '@material-ui/core'
 import EditMessage from '../../molecules/EditMessage/EditMessage'
 import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
 
-export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName }) {
+export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName, isComment = false }) {
   const [user] = useAuthState(auth);
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -43,9 +43,12 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
         </div>
         :
         <div className={styles.commentnotloggedin}>
-          <Link href={`/message/${messageId}`}>
-            <FontAwesomeIcon icon={faComment} />
-          </Link>
+          {isComment ? 
+            <Link href={`/message/${messageId}`}>
+              <FontAwesomeIcon icon={faComment} />
+            </Link>
+            :
+            <FontAwesomeIcon icon={faComment} />}
         </div>
       }
       
@@ -56,7 +59,7 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
             <h3 className={styles.title}>{titleCase(authorName)}</h3>
           </a>
         </Link>
-        <h3 style={{ margin: '0 0 0 0.25em' }}>says...</h3>
+        <h3 style={{ margin: '0 0 0 0.25em' }}>{isComment ? "commented..." : "says..."}</h3>
       </div>
       
       <p className={styles.message}>{message}</p>

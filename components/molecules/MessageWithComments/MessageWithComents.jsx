@@ -25,19 +25,26 @@ export default function MessageWithComents({ id, message }) {
   }
 
   const submitComment = async () => {
-    if(comment.length == 0 || !comment.replace(/\s/g, '').length || !comment.replace(/ ឵឵/g, '')) {
-      alert("Please submit a comment!");
-    } else {
-      // submit the comment and write to db
-      const data = {
-        authorName: user.displayName,
-        parent: id,
-        text: comment,
-        uid: user.uid,
+    if(user) {
+      if(comment.length == 0 || !comment.replace(/\s/g, '').length || !comment.replace(/ ឵឵/g, '')) {
+        alert("Please submit a comment!");
+      } else {
+        // submit the comment and write to db
+        const data = {
+          authorName: user.displayName,
+          parent: id,
+          text: comment,
+          uid: user.uid,
+          createdAt: new Date()
+        }
+  
+        const res = await db.collection('comments').doc().set(data);
+        window.location.reload(false);
       }
-
-      const res = await db.collection('messages').doc().set(data);
-      window.location.reload(false);
+    } else {
+      //prompt them to log in and then submit message again
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider);
     }
   }
 
@@ -49,7 +56,8 @@ export default function MessageWithComents({ id, message }) {
           uid={message.uid} 
           text={message.text} 
           edited={message.edited} 
-          authorName={message.authorName} />
+          authorName={message.authorName}     
+      />
       
       { /* Text box to add a comment */ }
       <div className="comment-box">
@@ -57,7 +65,20 @@ export default function MessageWithComents({ id, message }) {
         <button className="comment-button" disabled={comment.length > MAX_CHARS} onClick={submitComment}>Comment</button>
       </div>
 
-      {/* <Comments comments={comments} /> */}
+      { /* List of comments */ }
+      <div className="comment-list">
+        {comments.map(comment => (
+          <Message
+            key={comment.id}
+            id={comment.id}
+            uid={comment.uid}
+            text={comment.text}
+            edited={comment.edited}
+            authorName={comment.authorName}
+            isComment={true}
+          />
+        ))}
+      </div>
     </div>
   )
 }

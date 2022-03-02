@@ -44,6 +44,13 @@
   cursor: pointer;
 }
 
+.back {
+  position: absolute;
+  right: 98%;
+  top: 10px;
+  cursor: pointer;
+}
+
 .commentloggedin {
   position: absolute;
   right: 65px;

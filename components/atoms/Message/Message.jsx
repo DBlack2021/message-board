@@ -4,7 +4,7 @@ import styles from '../../../styles/Message.module.css'
 import { auth } from '../../../utils/db/index'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faTrashAlt, faComment } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt, faTrashAlt, faComment, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Modal } from '@material-ui/core'
 import EditMessage from '../../molecules/EditMessage/EditMessage'
 import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
@@ -24,9 +24,10 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
     <div className={styles.container}>
       
       {/* TODO: Back button for comments */}
+      {/* TODO: Figure out how to handle routing for link */}
       { isComment && commentPage &&
-        <div>
-          poop
+        <div className={styles.back}>
+          <FontAwesomeIcon icon={faArrowLeft} />
         </div>
       }
 

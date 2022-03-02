@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import Message from '../components/Message/Message';
+import Message from '../components/atoms/Message/Message';
 
 export default {
   title: 'Components/Message',

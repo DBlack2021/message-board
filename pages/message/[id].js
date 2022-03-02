@@ -2,7 +2,7 @@ import Head from 'next/head';
 import NavBar from '../../components/molecules/NavBar/NavBar'
 import { db } from '../../utils/db/index'
 import Message from '../../components/atoms/Message/Message';
-import MessageWithComents from '../../components/molecules/MessageWithComments/MessageWithComents';
+import MessageWithComments from '../../components/molecules/MessageWithComments/MessageWithComments';
 
 export async function getServerSideProps(context) {
   const messageId = context.params.id;
@@ -28,9 +28,11 @@ export default function messagePage( { id, message } ) {
       <NavBar />
       {
         message ? // todo : fix because {} is still truthy
-        <MessageWithComents
+        <MessageWithComments
           message={parsedMessage}
           id={id}
+          isComment={false}
+          commentPage={false}
         />
         :
         <h1 style={{ textAlign: 'center' }}>The Requested Message Cannot Be Found!</h1>

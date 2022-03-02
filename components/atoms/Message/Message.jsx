@@ -9,7 +9,7 @@ import { Modal } from '@material-ui/core'
 import EditMessage from '../../molecules/EditMessage/EditMessage'
 import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
 
-export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName, isComment = false }) {
+export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName, isComment = false, commentPage = false, parentId }) {
   const [user] = useAuthState(auth);
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -23,6 +23,13 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
   return (
     <div className={styles.container}>
       
+      {/* TODO: Back button for comments */}
+      { isComment && commentPage &&
+        <div>
+          poop
+        </div>
+      }
+
       { user && user.uid == authorId &&
           <div className={styles.edit}>
             <FontAwesomeIcon onClick={() => setEditing(true)} icon={faPencilAlt} />
@@ -36,20 +43,17 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       }
 
       { user && user.uid == authorId ?
-        <div className={styles.commentloggedin}>
-          <Link href={`/message/${messageId}`}>
-            <FontAwesomeIcon icon={faComment} />
-          </Link>
-        </div>
-        :
-        <div className={styles.commentnotloggedin}>
-          {isComment ? 
-            <Link href={`/message/${messageId}`}>
+          <div className={styles.commentloggedin}>
+            <Link href={`/${isComment ? 'comment' : 'message'}/${messageId}`}>
               <FontAwesomeIcon icon={faComment} />
             </Link>
-            :
-            <FontAwesomeIcon icon={faComment} />}
-        </div>
+          </div>
+          :
+          <div className={styles.commentnotloggedin}>
+              <Link href={`/${isComment ? 'comment' : 'message'}/${messageId}`}>
+                <FontAwesomeIcon icon={faComment} />
+              </Link>
+          </div>
       }
       
       

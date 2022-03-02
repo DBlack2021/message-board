@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       id: commentId,
-      parentComment: parentComment,
+      parentComment: !!parentComment,
       comment: JSON.stringify(comment)
     },
   }
@@ -36,7 +36,7 @@ export default function commentPage( { id, parentComment, comment } ) {
           id={id}
           isComment={true}
           commentPage={true}
-          parentIsComment={!!parentComment}
+          parentIsComment={parentComment}
         />
         :
         <h1 style={{ textAlign: 'center' }}>The Requested Message Cannot Be Found!</h1>

@@ -22,9 +22,6 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
 
   return (
     <div className={styles.container}>
-      
-      {/* TODO: Back button for comments */}
-      {/* TODO: Figure out how to handle routing for link */}
       { isComment && commentPage &&
         <div className={styles.back}>
           <Link href={`/${parentIsComment ? 'comment' : 'message'}/${parentId}`}>
@@ -72,11 +69,11 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       <p className={styles.message}>{message}</p>
 
       <Modal onClose={() => setEditing(false)} className={styles.modal} open={editing}>
-        <EditMessage id={messageId} />
+        <EditMessage id={messageId} isComment={isComment}/>
       </Modal>
 
       <Modal onClose={() => setDeleting(false)} className={styles.modal} open={deleting}>
-        <DeleteMessage id={messageId} close={() => setDeleting(false)}/>
+        <DeleteMessage id={messageId} isComment={isComment} close={() => setDeleting(false)}/>
       </Modal>
 
     </div>

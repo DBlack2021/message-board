@@ -23,7 +23,8 @@ export default function MessageGrid({ messages }) {
           text={message.text} 
           edited={message.edited} 
           authorName={message.authorName}
-          isComment={false} 
+          isComment={false}
+          commentPage = {false}
           />
         </div>
       ))}

@@ -9,7 +9,7 @@ import { Modal } from '@material-ui/core'
 import EditMessage from '../../molecules/EditMessage/EditMessage'
 import DeleteMessage from '../../molecules/DeleteMessage/DeleteMessage'
 
-export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName, isComment = false, commentPage = false, parentId }) {
+export default function Message({ id: messageId, uid: authorId, text: message, edited, authorName, isComment = false, commentPage = false, parentId, parentIsComment }) {
   const [user] = useAuthState(auth);
   const [editing, setEditing] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -27,7 +27,9 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
       {/* TODO: Figure out how to handle routing for link */}
       { isComment && commentPage &&
         <div className={styles.back}>
-          <FontAwesomeIcon icon={faArrowLeft} />
+          <Link href={`/${parentIsComment ? 'comment' : 'message'}/${parentId}`}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </Link>
         </div>
       }
 

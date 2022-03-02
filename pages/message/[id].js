@@ -33,6 +33,7 @@ export default function messagePage( { id, message } ) {
           id={id}
           isComment={false}
           commentPage={false}
+          parentIsComment={false}
         />
         :
         <h1 style={{ textAlign: 'center' }}>The Requested Message Cannot Be Found!</h1>

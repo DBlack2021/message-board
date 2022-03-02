@@ -5,7 +5,7 @@ import { db, auth } from '../../../utils/db/index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 
-export default function MessageWithComents({ id, message, isComment, commentPage }) {
+export default function MessageWithComents({ id, message, isComment, commentPage, parentIsComment }) {
 
   const MAX_CHARS = 100;
   const [comment, setComment] = useState("");
@@ -61,7 +61,8 @@ export default function MessageWithComents({ id, message, isComment, commentPage
           authorName={message.authorName}
           isComment={isComment} 
           commentPage={commentPage}
-          parentId={message.parent}    
+          parentId={message.parent}
+          parentIsComment={parentIsComment}    
       />
       
       { /* Text box to add a comment */ }
@@ -84,8 +85,9 @@ export default function MessageWithComents({ id, message, isComment, commentPage
             edited={comment.edited}
             authorName={comment.authorName}
             isComment={true}
-            commentPage={commentPage}
+            commentPage={false}
             parentId={comment.parent}
+            parentIsComment={true}
           />
         ))}
       </div>

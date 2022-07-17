@@ -27,7 +27,7 @@ export default function messagePage( { id, message } ) {
       </Head>
       <NavBar />
       {
-        message ? // todo : fix because {} is still truthy
+        message != {} ? // todo : fix because {} is still truthy
         <MessageWithComments
           message={parsedMessage}
           id={id}

@@ -22,40 +22,41 @@ export default function Message({ id: messageId, uid: authorId, text: message, e
 
   return (
     <div className={styles.container}>
-      { isComment && commentPage &&
-        <div className={styles.back}>
-          <Link href={`/${parentIsComment ? 'comment' : 'message'}/${parentId}`}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </Link>
-        </div>
-      }
-
-      { user && user.uid == authorId &&
-          <div className={styles.edit}>
-            <FontAwesomeIcon onClick={() => setEditing(true)} icon={faPencilAlt} />
-          </div>
-      }
-      
-      { user && user.uid == authorId &&
-          <div className={styles.trash}>
-            <FontAwesomeIcon onClick={() => setDeleting(true)} icon={faTrashAlt} />
-          </div>
-      }
-
-      { user && user.uid == authorId ?
-          <div className={styles.commentloggedin}>
-            <Link href={`/${isComment ? 'comment' : 'message'}/${messageId}`}>
-              <FontAwesomeIcon icon={faComment} />
+      <div>
+        { isComment && commentPage &&
+          <div className={styles.back}>
+            <Link href={`/${parentIsComment ? 'comment' : 'message'}/${parentId}`}>
+              <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
           </div>
-          :
-          <div className={styles.commentnotloggedin}>
+        }
+
+        { user && user.uid == authorId &&
+            <div className={styles.edit}>
+              <FontAwesomeIcon onClick={() => setEditing(true)} icon={faPencilAlt} />
+            </div>
+        }
+        
+        { user && user.uid == authorId &&
+            <div className={styles.trash}>
+              <FontAwesomeIcon onClick={() => setDeleting(true)} icon={faTrashAlt} />
+            </div>
+        }
+
+        { user && user.uid == authorId ?
+            <div className={styles.commentloggedin}>
               <Link href={`/${isComment ? 'comment' : 'message'}/${messageId}`}>
                 <FontAwesomeIcon icon={faComment} />
               </Link>
-          </div>
-      }
-      
+            </div>
+            :
+            <div className={styles.commentnotloggedin}>
+                <Link href={`/${isComment ? 'comment' : 'message'}/${messageId}`}>
+                  <FontAwesomeIcon icon={faComment} />
+                </Link>
+            </div>
+        }
+      </div>
       
       <div className={styles.titleContainer}>
         <Link href={`/${authorId}`}>

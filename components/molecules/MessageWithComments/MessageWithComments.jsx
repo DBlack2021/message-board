@@ -72,6 +72,7 @@ export default function MessageWithComents({ id, message, isComment, commentPage
           {MAX_CHARS - comment.length} characters left
         </h6>
         <button className="comment-button" disabled={comment.length > MAX_CHARS} onClick={submitComment}>Comment</button>
+        <button className="comment-button" onClick={() => setComment("")}>Clear</button>
       </div>
 
       { /* List of comments */ }

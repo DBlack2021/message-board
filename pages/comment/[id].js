@@ -30,7 +30,7 @@ export default function commentPage( { id, parentComment, comment } ) {
       </Head>
       <NavBar />
       {
-        comment ? // todo : fix because {} is still truthy
+        comment != {} ? // todo : fix because {} is still truthy
         <MessageWithComments
           message={parsedComment}
           id={id}
